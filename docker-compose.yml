@@ -1,10 +1,15 @@
 version: '2'
 services:
   kanboard:
-    image: kanboard/kanboard:latest
+    build:
+      context: .
+      args:
+        VERSION: 1.2.22
+    image: kanboard:1.2.22
+    container_name: kanboard
+    restart: unless-stopped
     ports:
-     - "80:80"
-     - "443:443"
+     - "8080:80"
     volumes:
      - kanboard_data:/var/www/app/data
      - kanboard_plugins:/var/www/app/plugins
